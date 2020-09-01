@@ -2,6 +2,7 @@
 
 #The pipeline is to download data from Li et.al 2018 with sratoolkits
 #Then align the fastq files into BAM files with hisat2 
+#samtools is used to index the BAM files
 #The BAM files are input for IGV
 
 #Directories
