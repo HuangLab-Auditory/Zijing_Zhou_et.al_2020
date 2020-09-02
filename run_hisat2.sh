@@ -9,7 +9,7 @@
 PROJROOT=/home/student/Zijing_Zhou_et.al_2020
 RAW="${PROJROOT}"/1_rawData
 ALIGNED="${PROJROOT}"/2_alignedData
-INDEX="${PROJROOT}"/Reference
+INDEX="${PROJROOT}"/Reference/mm10/genome
 
 
 i=75
@@ -26,15 +26,9 @@ fastq-dump \
 #Converting fastq files into SAM files
 
 echo aligning SRR67984$i into SAM...
-hisat2 
--p 8 \
---dta \
--x ${INDEX} \
--1 ${RAW}/SRR67984$i_1.fastq \ 
--2 ${RAW}/SRR67984$i_2.fastq \
--S ${ALIGNED}/SRR67984$i.sam
+hisat2 -p 8 --dta -x ${INDEX} -1 ${RAW}/SRR67984${i}_1.fastq -2 ${RAW}/SRR67984${i}_2.fastq -S ${ALIGNED}/SRR67984$i.sam
 
-#Sorting SAM files into BAM files and index the BAM files
+Sorting SAM files into BAM files and index the BAM files
 
 echo Converting SAM into BAM...
 
@@ -45,5 +39,12 @@ ${ALIGNED}/SRR67984$i.sam
 #Indexing
 
 samtools index ${ALIGNED}/SRR67984$i.bam
+
+#Delete useless files
+
+rm ${RAW}/SRR67984${i}_1.fastq
+rm ${RAW}/SRR67984${i}_2.fastq
+rm ${ALIGNED}/SRR67984$i.sam
+
 ((i=i+2))
 done
