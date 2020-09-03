@@ -28,9 +28,9 @@ fastq-dump \
 echo aligning SRR67984$i into SAM...
 hisat2 -p 8 --dta -x ${INDEX} -1 ${RAW}/SRR67984${i}_1.fastq -2 ${RAW}/SRR67984${i}_2.fastq -S ${ALIGNED}/SRR67984$i.sam
 
-Sorting SAM files into BAM files and index the BAM files
+#Sorting SAM files into BAM files and index the BAM files
 
-echo Converting SAM into BAM...
+echo converting SAM into BAM...
 
 samtools sort -@ 8 \
 -o ${ALIGNED}/SRR67984$i.bam \
