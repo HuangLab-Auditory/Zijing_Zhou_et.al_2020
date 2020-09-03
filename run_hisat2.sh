@@ -51,5 +51,5 @@ do
   rm ${RAW}/SRR67984${i}_2.fastq
   rm ${ALIGNED}/SRR67984$i.sam
 
-((i=i+2))
+  ((i=i+2))
 done
